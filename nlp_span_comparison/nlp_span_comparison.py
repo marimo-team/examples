@@ -94,9 +94,7 @@ def _(annotate, mo):
 
 @app.cell
 def _(CHOICES_PATH, PARAGRAPHS, load_choices, mo):
-    get_choices, set_choices = mo.state(
-        load_choices(CHOICES_PATH, len(PARAGRAPHS))
-    )
+    get_choices, set_choices = mo.state(load_choices(CHOICES_PATH, len(PARAGRAPHS)))
     return get_choices, set_choices
 
 
@@ -137,9 +135,7 @@ def _(PARAGRAPHS, SPANS, annotate, index, mo):
 
 @app.cell
 def _(mo, model_A_prediction, model_B_prediction):
-    mo.hstack(
-        [model_A_prediction, model_B_prediction], gap=2, justify="space-around"
-    )
+    mo.hstack([model_A_prediction, model_B_prediction], gap=2, justify="space-around")
     return
 
 
@@ -169,18 +165,17 @@ def _(json, os):
         assert len(choices) == number_of_examples
         return choices
 
-
     def write_choices(choices, path):
         # Trunacate notes
         with open(path, "w") as f:
             f.write(json.dumps(choices))
+
     return load_choices, write_choices
 
 
 @app.cell
 def _(PARAGRAPHS, random):
     random.seed(0)
-
 
     def predict_spans(text):
         first = [random.randint(0, len(text) - 2)]
@@ -190,7 +185,6 @@ def _(PARAGRAPHS, random):
 
         return first, second
 
-
     SPANS = [predict_spans(p) for p in PARAGRAPHS]
     return SPANS, predict_spans
 
@@ -198,9 +192,7 @@ def _(PARAGRAPHS, random):
 @app.cell
 def _(HAMLET, textwrap):
     PARAGRAPHS = [
-        textwrap.dedent(block).strip()[:1000]
-        for block in HAMLET.split("\n\n")
-        if block
+        textwrap.dedent(block).strip()[:1000] for block in HAMLET.split("\n\n") if block
     ]
     return (PARAGRAPHS,)
 
@@ -216,6 +208,7 @@ def _():
             + "</mark>"
             + text[span[1] :]
         )
+
     return (annotate,)
 
 
@@ -237,6 +230,7 @@ def _(urllib):
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -247,6 +241,7 @@ def _():
     import random
     import textwrap
     import urllib
+
     return json, os, random, textwrap, urllib
 
 

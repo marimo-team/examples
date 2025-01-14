@@ -1,0 +1,21 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request: {}
+
+jobs:
+  test:
+    name: Test notebooks
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.1
+      - name: Checkout the repository
+        uses: actions/checkout@main
+      - name: 🐍 Setup uv
+        uses: astral-sh/setup-uv@v5
+      - name: Run tests
+        run: |
+          uvx --with marimo pytest -v
