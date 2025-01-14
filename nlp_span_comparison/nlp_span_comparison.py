@@ -152,7 +152,7 @@ def _(get_choices):
 
 @app.cell
 def _(mo):
-    CHOICES_PATH = str(mo.notebook_location() / "choices.json")
+    CHOICES_PATH = str(mo.notebook_dir() / "choices.json")
     return (CHOICES_PATH,)
 
 
