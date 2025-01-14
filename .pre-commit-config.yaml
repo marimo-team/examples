@@ -1,0 +1,24 @@
+fail_fast: false
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.6
+    hooks:
+      - id: actionlint
+        args: [-ignore, SC]
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.43.0
+    hooks:
+      - id: markdownlint-fix
+        args: [-c, configs/.markdownlint.yaml, --fix, --disable, MD028]
+
+  - repo: https://github.com/crate-ci/typos
+    rev: dictgen-v0.3.1
+    hooks:
+      - id: typos
