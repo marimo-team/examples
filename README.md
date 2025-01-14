@@ -11,16 +11,30 @@ This repository contains a curated collection of example
 as starting points for your own data exploration, experimentation, workflows,
 and apps.
 
+## Running example notebooks
+
+Each example has a README that tells you how to run it locally.
+
+Most examples can also be opened in marimo's [online
+playground](https://docs.marimo.io/guides/publishing/playground/) by clicking
+the "open in marimo" badge in its README.
+
 ## Adding new examples
 
-Open a pull request to contribute a new example. Each example gets its own
-top-level folder.
+We welcome community contributions of examples; you don't need to be
+an expert to help out!
+
+Open a pull request to contribute a new example. Each example should be placed
+in its own folder and include a short `README.md`.
+
+Looking for a specific example or template but can't find it? Feel free
+to file an issue and request it!
 
 ## Community
 
 We're building a community. Come hang out with us!
 
-- 🌟 [Star us on GitHub](https://github.com/marimo-team/marimo)
+- 🌟 [Star us on GitHub](https://github.com/marimo-team/examples)
 - 💬 [Chat with us on Discord](https://marimo.io/discord?ref=readme)
 - 📧 [Subscribe to our Newsletter](https://marimo.io/newsletter)
 - ☁️ [Join our Cloud Waitlist](https://marimo.io/cloud)
