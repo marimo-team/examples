@@ -1,6 +1,6 @@
 # NLP Span Comparison
 
-[![Open in marimo](https://marimo.io/shield.svg)](https://marimo.app/github.com/marimo-team/examples/blob/main/examples/nlp_span_comparison/nlp_span_comparison.py)
+[![Open in marimo](https://marimo.io/shield.svg)](https://marimo.app/github.com/marimo-team/examples/blob/main/nlp_span_comparison/nlp_span_comparison.py)
 
 This notebook can be used as a template for comparing NLP models that predict
 spans. Given two models and a sequence of text examples from which to extract
