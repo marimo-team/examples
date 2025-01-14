@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/SchemaStore/schemastore/refs/heads/master/src/schemas/json/github-issue-forms.json
+name: '🚀 Example request'
+description: Request a new example
+type: Example
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Let us know what example you'd like to see added!
+  - type: textarea
+    id: example-description
+    attributes:
+      label: Description
+      description: 'Description of the example to add. Please make the reason and usecases as detailed as possible. If you intend to submit a PR for this issue, tell us in the description. Thanks!'
+      placeholder: I would like an example notebook on ...
+    validations:
+      required: true
