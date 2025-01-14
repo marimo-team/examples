@@ -16,4 +16,4 @@ jobs:
         uses: yezz123/setup-uv@v4
       - name: Run tests
         run: |
-          uvx --with marimo pytest -v
+          uvx --with marimo pytest -v --rootdir='.'
