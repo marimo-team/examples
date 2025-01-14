@@ -11,7 +11,7 @@ This repository contains a curated collection of example
 as starting points for your own data exploration, experimentation, workflows,
 and apps.
 
-## Running example notebooks
+## Running examples
 
 Each example has a README that tells you how to run it locally.
 
