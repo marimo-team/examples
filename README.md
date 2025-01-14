@@ -13,9 +13,8 @@ and apps.
 
 ## Running examples
 
-Each example has a README that tells you how to run it locally.
-
-Most examples can also be opened in marimo's [online
+Each example has a README that tells you how to run it locally. Most examples
+can also be opened in marimo's [online
 playground](https://docs.marimo.io/guides/publishing/playground/) by clicking
 the "open in marimo" badge in its README.
 
@@ -25,7 +24,8 @@ We welcome community contributions of examples; you don't need to be
 an expert to help out!
 
 Open a pull request to contribute a new example. Each example should be placed
-in its own folder and include a short `README.md`.
+in its own folder and include a short `README.md`. We also include smoke tests
+for each notebook in `tests/`. Run tests with `uvx --with marimo pytest .`
 
 Looking for a specific example or template but can't find it? Feel free
 to file an issue and request it!
