@@ -1,11 +1,5 @@
 """Smoke tests that check notebooks don't have syntax errors."""
 
-import pathlib
-import sys
-
-ROOT = pathlib.Path(__file__).parent.parent
-sys.path.append(str(ROOT))
-
 
 def test_nlp_span_comparison() -> None:
     from nlp_span_comparison import nlp_span_comparison
