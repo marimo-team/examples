@@ -23,9 +23,14 @@ the "open in marimo" badge in its README.
 We welcome community contributions of examples; you don't need to be
 an expert to help out!
 
-Open a pull request to contribute a new example. Each example should be placed
-in its own folder and include a short `README.md`. We also include smoke tests
-for each notebook in `tests/`. Run tests with `uvx --with marimo pytest .`
+Open a pull request to contribute a new example. Ideally, examples are easy
+for others to adapt to their own data and models. Here's a contribution checklist:
+
+- [ ] Place the example in its own folder
+- [ ] Include package dependencies in notebook files [using
+  `--sandbox`](https://docs.marimo.io/guides/package_reproducibility/)
+- [ ] Include a short README.md describing your example and how to run it.
+- [ ] Include instructions on how to adapt the notebook to custom data and models
 
 Looking for a specific example or template but can't find it? Feel free
 to file an issue and request it!
