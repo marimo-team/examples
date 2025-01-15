@@ -11,6 +11,9 @@ This repository contains a curated collection of example
 as starting points for your own data exploration, experimentation, workflows,
 and apps.
 
+Looking for a specific example or template but can't find it? Feel free
+to file an issue and request it, or contribute it yourself.
+
 ## Running examples
 
 Each example has a README that tells you how to run it locally. Most examples
@@ -31,9 +34,6 @@ for others to adapt to their own data and models. Here's a contribution checklis
   `--sandbox`](https://docs.marimo.io/guides/package_reproducibility/)
 - [ ] Include a short README.md describing your example and how to run it.
 - [ ] Include instructions on how to adapt the notebook to custom data and models
-
-Looking for a specific example or template but can't find it? Feel free
-to file an issue and request it!
 
 ## Community
 
