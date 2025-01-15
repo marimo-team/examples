@@ -5,7 +5,22 @@
 This notebook can be used as a template for comparing NLP models that predict
 spans. Given two models and a sequence of text examples from which to extract
 spans, the notebook presents the model predictions on each example and
-lets you indicate which model yielded the better prediction.
+lets you indicate which model yielded the better prediction. Your preferences
+are saved (and loaded) from storage, letting you use this as a real tool.
+
+To use this notebook for your own data, just replace the implementations
+of the following three functions:
+
+* `load_examples`: Load your own examples (strings) from a file or database.
+* `model_a_predictor`: Predict a span for a given example using model A.
+* `model_b_predictor`: Predict a span for a given example using model B.
+
+The notebook keeps track of your preferences in a JSON file. To track
+preferences in a different way, such as in a database, replace the implementations
+of the following two functions:
+
+* `load_choices`
+* `save_choices`
 
 ## Running this notebook
 

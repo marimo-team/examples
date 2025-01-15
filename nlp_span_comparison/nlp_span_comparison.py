@@ -7,7 +7,7 @@
 
 import marimo
 
-__generated_with = "0.10.12"
+__generated_with = "0.10.13"
 app = marimo.App()
 
 
@@ -15,6 +15,45 @@ app = marimo.App()
 def _(mo):
     mo.md("""# Span Comparison""")
     return
+
+
+@app.cell
+def _(textwrap, urllib):
+    # Modify this function to load your own examples
+    def load_examples():
+        hamlet_url = "https://gist.githubusercontent.com/provpup/2fc41686eab7400b796b/raw/b575bd01a58494dfddc1d6429ef0167e709abf9b/hamlet.txt"
+
+        with urllib.request.urlopen(hamlet_url) as f:
+            HAMLET = f.read().decode("utf-8")
+
+        return [
+            textwrap.dedent(block).strip()[:1000]
+            for block in HAMLET.split("\n\n")
+            if block
+        ]
+    return (load_examples,)
+
+
+@app.cell
+def _(random):
+    # Replace with your predictor for model A
+    def model_a_predictor(text: str) -> tuple[int, int]:
+        random.seed(len(text))
+        start = random.randint(0, len(text) - 2)
+        end = random.randint(start + 1, len(text) - 1)
+        return start, end
+    return (model_a_predictor,)
+
+
+@app.cell
+def _(random):
+    # Replace with your predictor for model B
+    def model_b_predictor(text: str) -> tuple[int, int]:
+        random.seed(len(text) / 2)
+        start = random.randint(0, len(text) - 2)
+        end = random.randint(start + 1, len(text) - 1)
+        return start, end
+    return (model_b_predictor,)
 
 
 @app.cell(hide_code=True)
@@ -26,6 +65,12 @@ def _(mo):
         """
     )
     return
+
+
+@app.cell
+def _(load_examples):
+    EXAMPLES = load_examples()
+    return (EXAMPLES,)
 
 
 @app.cell
@@ -73,19 +118,23 @@ def _(index):
 
 @app.cell
 def _(CHOICES_PATH, get_choices, index, mo, write_choices):
-    preference = get_choices()[index.value]["model"]
-    mo.stop(preference is None, mo.md("**Choose the better model**.").center())
-    write_choices(get_choices(), CHOICES_PATH)
-    mo.md(f"You prefer **model {preference}**.").center()
-    return (preference,)
+    def _():
+        preference = get_choices()[index.value]["model"]
+        mo.stop(preference is None, mo.md("**Choose the better model**.").center())
+        
+        write_choices(get_choices(), CHOICES_PATH)
+        return mo.md(f"You prefer **model {preference}**.").center()
+
+    _()
+    return
 
 
 @app.cell
 def _(annotate, mo):
     mo.hstack(
         [
-            mo.md(annotate("Model A", [0, len("Model A")], "yellow")),
-            mo.md(annotate("Model B", [0, len("Model B")], "lightblue")),
+            annotate("Model A", [0, len("Model A")], "yellow"),
+            annotate("Model B", [0, len("Model B")], "lightblue"),
         ],
         justify="space-around",
     )
@@ -93,8 +142,8 @@ def _(annotate, mo):
 
 
 @app.cell
-def _(CHOICES_PATH, PARAGRAPHS, load_choices, mo):
-    get_choices, set_choices = mo.state(load_choices(CHOICES_PATH, len(PARAGRAPHS)))
+def _(CHOICES_PATH, EXAMPLES, load_choices, mo):
+    get_choices, set_choices = mo.state(load_choices(CHOICES_PATH, len(EXAMPLES)))
     return get_choices, set_choices
 
 
@@ -122,20 +171,24 @@ def _(index, mo, set_choices):
 
 
 @app.cell
-def _(PARAGRAPHS, SPANS, annotate, index, mo):
-    model_A_prediction = mo.md(
-        annotate(PARAGRAPHS[index.value], SPANS[index.value][0], color="yellow")
+def _(EXAMPLES, annotate, index, model_a_predictor, model_b_predictor):
+    _example = EXAMPLES[index.value]
+
+    model_A_prediction = annotate(
+        _example, model_a_predictor(_example), color="yellow"
     )
 
-    model_B_prediction = mo.md(
-        annotate(PARAGRAPHS[index.value], SPANS[index.value][1], color="lightblue")
+    model_B_prediction = annotate(
+        _example, model_b_predictor(_example), color="lightblue"
     )
     return model_A_prediction, model_B_prediction
 
 
 @app.cell
 def _(mo, model_A_prediction, model_B_prediction):
-    mo.hstack([model_A_prediction, model_B_prediction], gap=2, justify="space-around")
+    mo.hstack(
+        [model_A_prediction, model_B_prediction], gap=2, justify="space-around"
+    )
     return
 
 
@@ -165,72 +218,37 @@ def _(json, os):
         assert len(choices) == number_of_examples
         return choices
 
+
     def write_choices(choices, path):
         # Trunacate notes
         with open(path, "w") as f:
             f.write(json.dumps(choices))
-
     return load_choices, write_choices
 
 
 @app.cell
-def _(PARAGRAPHS, random):
-    random.seed(0)
-
-    def predict_spans(text):
-        first = [random.randint(0, len(text) - 2)]
-        first.append(random.randint(first[0] + 1, len(text) - 1))
-        second = [random.randint(0, len(text) - 2)]
-        second.append(random.randint(second[0] + 1, len(text) - 1))
-
-        return first, second
-
-    SPANS = [predict_spans(p) for p in PARAGRAPHS]
-    return SPANS, predict_spans
-
-
-@app.cell
-def _(HAMLET, textwrap):
-    PARAGRAPHS = [
-        textwrap.dedent(block).strip()[:1000] for block in HAMLET.split("\n\n") if block
-    ]
-    return (PARAGRAPHS,)
-
-
-@app.cell
-def _():
+def _(mo):
     def annotate(text, span, color):
         mark_start = f"<mark style='background-color:{color}'>"
-        return (
+        return mo.md(
             text[: span[0]]
             + mark_start
             + text[span[0] : span[1]]
             + "</mark>"
             + text[span[1] :]
         )
-
     return (annotate,)
 
 
 @app.cell
-def _(PARAGRAPHS):
-    NUMBER_OF_EXAMPLES = len(PARAGRAPHS)
+def _(EXAMPLES):
+    NUMBER_OF_EXAMPLES = len(EXAMPLES)
     return (NUMBER_OF_EXAMPLES,)
-
-
-@app.cell
-def _(urllib):
-    _hamlet_url = "https://gist.githubusercontent.com/provpup/2fc41686eab7400b796b/raw/b575bd01a58494dfddc1d6429ef0167e709abf9b/hamlet.txt"
-
-    with urllib.request.urlopen(_hamlet_url) as f:
-        HAMLET = f.read().decode("utf-8")
-    return HAMLET, f
 
 
 @app.cell
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -241,7 +259,6 @@ def _():
     import random
     import textwrap
     import urllib
-
     return json, os, random, textwrap, urllib
 
 
