@@ -31,6 +31,7 @@ def _(textwrap, urllib):
             for block in HAMLET.split("\n\n")
             if block
         ]
+
     return (load_examples,)
 
 
@@ -42,6 +43,7 @@ def _(random):
         start = random.randint(0, len(text) - 2)
         end = random.randint(start + 1, len(text) - 1)
         return start, end
+
     return (model_a_predictor,)
 
 
@@ -53,6 +55,7 @@ def _(random):
         start = random.randint(0, len(text) - 2)
         end = random.randint(start + 1, len(text) - 1)
         return start, end
+
     return (model_b_predictor,)
 
 
@@ -121,7 +124,7 @@ def _(CHOICES_PATH, get_choices, index, mo, write_choices):
     def _():
         preference = get_choices()[index.value]["model"]
         mo.stop(preference is None, mo.md("**Choose the better model**.").center())
-        
+
         write_choices(get_choices(), CHOICES_PATH)
         return mo.md(f"You prefer **model {preference}**.").center()
 
@@ -174,9 +177,7 @@ def _(index, mo, set_choices):
 def _(EXAMPLES, annotate, index, model_a_predictor, model_b_predictor):
     _example = EXAMPLES[index.value]
 
-    model_A_prediction = annotate(
-        _example, model_a_predictor(_example), color="yellow"
-    )
+    model_A_prediction = annotate(_example, model_a_predictor(_example), color="yellow")
 
     model_B_prediction = annotate(
         _example, model_b_predictor(_example), color="lightblue"
@@ -186,9 +187,7 @@ def _(EXAMPLES, annotate, index, model_a_predictor, model_b_predictor):
 
 @app.cell
 def _(mo, model_A_prediction, model_B_prediction):
-    mo.hstack(
-        [model_A_prediction, model_B_prediction], gap=2, justify="space-around"
-    )
+    mo.hstack([model_A_prediction, model_B_prediction], gap=2, justify="space-around")
     return
 
 
@@ -218,11 +217,11 @@ def _(json, os):
         assert len(choices) == number_of_examples
         return choices
 
-
     def write_choices(choices, path):
         # Trunacate notes
         with open(path, "w") as f:
             f.write(json.dumps(choices))
+
     return load_choices, write_choices
 
 
@@ -237,6 +236,7 @@ def _(mo):
             + "</mark>"
             + text[span[1] :]
         )
+
     return (annotate,)
 
 
@@ -249,6 +249,7 @@ def _(EXAMPLES):
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -259,6 +260,7 @@ def _():
     import random
     import textwrap
     import urllib
+
     return json, os, random, textwrap, urllib
 
 
