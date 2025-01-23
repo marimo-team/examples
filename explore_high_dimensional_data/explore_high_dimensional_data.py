@@ -48,6 +48,7 @@ def _():
 
         data, labels = sklearn.datasets.load_digits(return_X_y=True)
         return data, labels
+
     return (load_data,)
 
 
@@ -64,9 +65,10 @@ def _():
         """
         import sklearn
 
-        return sklearn.decomposition.PCA(
-            n_components=2, whiten=True
-        ).fit_transform(data)
+        return sklearn.decomposition.PCA(n_components=2, whiten=True).fit_transform(
+            data
+        )
+
     return (embed_data,)
 
 
@@ -96,6 +98,7 @@ def _(pl):
             )
             .properties(width=500, height=500)
         )
+
     return (scatter_data,)
 
 
@@ -128,6 +131,7 @@ def _():
             axes.set_xticks([])
         plt.tight_layout()
         return fig
+
     return (show_selection,)
 
 
@@ -159,6 +163,7 @@ def _(load_data):
 @app.cell
 def _():
     import polars as pl
+
     return (pl,)
 
 
@@ -213,6 +218,7 @@ def _(chart, data, mo, show_selection, table):
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
