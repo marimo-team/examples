@@ -20,10 +20,10 @@ the "open in marimo" badge in its README.
 
 ## Adding new examples
 
-We welcome community contributions of examples.
+We welcome community contributions of examples!
 
-Open a pull request to contribute a new example. Ideally, examples are easy
-for others to adapt to their own data and models. Here's a contribution checklist:
+Open a pull request to contribute a new example. Ideally, examples are easy for
+others to adapt to their own data and models. Here's a contribution checklist:
 
 - [ ] Place the example in its own folder
 - [ ] Include package dependencies in notebook files [using
@@ -31,7 +31,8 @@ for others to adapt to their own data and models. Here's a contribution checklis
 - [ ] Include a short README.md describing your example and how to run it.
 - [ ] Include instructions on how to adapt the notebook to custom data and models
 
-If you aren't comfortable adding a new example, you can also request new examples by filing an issue.
+If you aren't comfortable adding a new example, you can also request new
+examples by filing an issue.
 
 ## Community
 
