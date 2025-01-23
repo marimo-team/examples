@@ -22,6 +22,8 @@ of the following two functions:
 * `load_choices`
 * `save_choices`
 
+<img src="https://raw.githubusercontent.com/marimo-team/marimo/main/docs/_static/docs-model-comparison.gif" style="border-radius: 8px" width="450px" />
+
 ## Running this notebook
 
 Open this notebook in [our online
