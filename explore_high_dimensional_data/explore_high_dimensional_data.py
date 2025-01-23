@@ -195,7 +195,11 @@ def _(chart, mo):
 def _(chart, data, mo, show_selection, table):
     mo.stop(not len(chart.value))
 
-    selected_rows = show_selection(data, list(chart.value["index"]))
+    selected_rows = (
+        show_selection(data, list(chart.value["index"]))
+        if table.value.is_empty()
+        else show_selection(data, list(table.value["index"]))
+    )
 
     mo.md(
         f"""
