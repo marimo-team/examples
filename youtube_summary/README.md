@@ -4,7 +4,7 @@ This notebook can be used as a template to summarise YouTube videos. It was orig
 used to fetch summaries for some [keyboard reviews](https://www.youtube.com/playlist?list=PLGj5nRqy15j93TD0iReqfLL9lU1lZFEs6) but the notebook itself can be adapted
 for many other use-cases too. 
 
-![](assets/youtube_summary.png)
+![](/assets/youtube_summary.png)
 
 ## Running this notebook
 
