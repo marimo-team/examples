@@ -1,6 +1,6 @@
 # Youtube Summary
 
-This notebook can be used as a template to summarise YouTube videos. It was orignally
+This notebook can be used as a template to summarise YouTube videos. It was originally
 used to fetch summaries for some [keyboard reviews](https://www.youtube.com/playlist?list=PLGj5nRqy15j93TD0iReqfLL9lU1lZFEs6) but the notebook itself can be adapted
 for many other use-cases too. 
 

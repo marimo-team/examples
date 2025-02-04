@@ -29,16 +29,18 @@ def _():
     from yt_dlp import YoutubeDL
     from pathlib import Path
 
-    def download_yt(yt_url: str): 
+    def download_yt(yt_url: str):
         yt_id = yt_url[-11:]
         video_path = f"{yt_id}.m4a"
 
         ydl_opts = {
-            'format': 'm4a/bestaudio/best',
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'm4a',
-            }]
+            "format": "m4a/bestaudio/best",
+            "postprocessors": [
+                {
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "m4a",
+                }
+            ],
         }
 
         if not Path(video_path).exists():
@@ -50,12 +52,14 @@ def _():
                     vid.rename(video_path)
         else:
             print("Video has been downloaded already")
+
     return Path, YoutubeDL, cv2, download_yt, plt
 
 
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -104,18 +108,19 @@ def _():
     import instructor
     from pydantic import BaseModel
 
-
     class YouTubeOutput(BaseModel):
         """
         Output of a YouTube video that reviews ergonomic keyboards.
 
-        Make sure that you have a clear summary that highlights some of the findings. Refer to the reviewer as "me" and write as if it was written by the reviewer. But not in the present tense, it needs to be past tense. Avoid a formal style, write as if it was written on an informal tech-blog. Also make sure that you create a sequences of pros and cons of the keyboard. No more than 4 pros and 4 cons. Also add a oneliner tldr for the review, typically you can just copy what is in the title. The name of the keyboard should also include the brand if there is one. 
+        Make sure that you have a clear summary that highlights some of the findings. Refer to the reviewer as "me" and write as if it was written by the reviewer. But not in the present tense, it needs to be past tense. Avoid a formal style, write as if it was written on an informal tech-blog. Also make sure that you create a sequences of pros and cons of the keyboard. No more than 4 pros and 4 cons. Also add a oneliner tldr for the review, typically you can just copy what is in the title. The name of the keyboard should also include the brand if there is one.
         """
+
         summary: str
         pros: List[str]
         cons: List[str]
         tldr: str
         keyboard_name: str
+
     return BaseModel, List, YouTubeOutput, instructor
 
 
@@ -136,7 +141,9 @@ def _(instructor):
 
 @app.cell
 def _(mo):
-    mo.md("Once the downloading/parsing/generating is done, you can see the results below together with a 'copy to clipboard' button.")
+    mo.md(
+        "Once the downloading/parsing/generating is done, you can see the results below together with a 'copy to clipboard' button."
+    )
     return
 
 
@@ -181,7 +188,6 @@ def _(
 
     """)
 
-
     with mo.status.spinner(subtitle="Running LLM ...") as _spinner:
         response = client.chat.completions.create(
             model="claude-3-5-sonnet-20241022",
@@ -195,14 +201,14 @@ def _(
             response_model=YouTubeOutput,
         )
         rendered = template.render(
-            summary=response.summary, 
-            pros=response.pros, 
+            summary=response.summary,
+            pros=response.pros,
             cons=response.cons,
-            title=info["title"], 
+            title=info["title"],
             thumbnail=info["thumbnail"],
             keyboard_name=response.keyboard_name,
-            tldr=response.tldr, 
-            video_idx=f"{text_input.value[-11:]}"
+            tldr=response.tldr,
+            video_idx=f"{text_input.value[-11:]}",
         )
         clipboard_btn = CopyToClipboard(rendered)
 
@@ -223,6 +229,7 @@ def _(
 @app.cell
 def _():
     from wigglystuff import CopyToClipboard
+
     return (CopyToClipboard,)
 
 
