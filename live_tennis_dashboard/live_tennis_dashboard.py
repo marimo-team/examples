@@ -35,6 +35,7 @@ def _(mo):
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -64,9 +65,9 @@ def _(mo):
 
 @app.cell
 def _(api_key_box, os):
-    api_key = api_key_box.value.strip() or os.environ.get(
-        "LIVETENNIS_API_KEY", ""
-    ).strip()
+    api_key = (
+        api_key_box.value.strip() or os.environ.get("LIVETENNIS_API_KEY", "").strip()
+    )
     return (api_key,)
 
 
@@ -246,9 +247,7 @@ def _(API_BASE, SAMPLE, api_key, mo, refresher, requests, tour_select):
 
     if api_key:
         try:
-            live_matches = _get("/matches", {"status": "live", **_tour_params})[
-                "data"
-            ]
+            live_matches = _get("/matches", {"status": "live", **_tour_params})["data"]
             fixtures = _get("/fixtures", {"limit": 25, **_tour_params})["data"]
             is_sample = False
             data_banner = mo.callout(
@@ -360,8 +359,7 @@ def _(
         if _query:
             players = match.get("players") or {}
             names = " ".join(
-                (players.get(side) or {}).get("name") or ""
-                for side in ("p1", "p2")
+                (players.get(side) or {}).get("name") or "" for side in ("p1", "p2")
             ).lower()
             return _query in names
         return True
@@ -386,9 +384,7 @@ def _(
                 "Sets": fmt_sets(_score),
                 "Games": fmt_games(_score),
                 "Points": fmt_points(_score),
-                "Break point": (
-                    "P2" if _serving == "P1" else "P1"
-                ) if _bp else "",
+                "Break point": ("P2" if _serving == "P1" else "P1") if _bp else "",
             }
         )
 
@@ -419,9 +415,7 @@ def _(fixtures, is_sample, mo, player_search, tour_select):
         # Sample mode approximates it: Fixture.tour is the record's own
         # granular value (e.g. "challenger_men"), so match by prefix.
         if tour_select.value and is_sample:
-            if not (fixture.get("tour") or "").lower().startswith(
-                tour_select.value
-            ):
+            if not (fixture.get("tour") or "").lower().startswith(tour_select.value):
                 return False
         if _query:
             names = (
