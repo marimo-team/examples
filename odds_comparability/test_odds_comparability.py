@@ -4,7 +4,13 @@ import copy
 import unittest
 from unittest.mock import patch
 
-from odds_comparability import app, compare_records, record_table, synthetic_records, workload
+from odds_comparability import (
+    app,
+    compare_records,
+    record_table,
+    synthetic_records,
+    workload,
+)
 
 
 class ComparabilityTests(unittest.TestCase):
@@ -14,13 +20,21 @@ class ComparabilityTests(unittest.TestCase):
 
     def test_each_contract_mismatch_has_a_specific_reason(self):
         for scenario, message in (
-            ("event", "Event identity: the records differ"), ("market", "Market: the records differ"),
-            ("outcome", "Named outcome: the records differ"), ("point", "Point/line differs"),
-            ("period", "Period: the records differ"), ("settlement", "Settlement rules: the records differ"),
+            ("event", "Event identity: the records differ"),
+            ("market", "Market: the records differ"),
+            ("outcome", "Named outcome: the records differ"),
+            ("point", "Point/line differs"),
+            ("period", "Period: the records differ"),
+            ("settlement", "Settlement rules: the records differ"),
             ("unknown_rules", "Settlement rules are not fully supplied"),
         ):
             with self.subTest(scenario=scenario):
-                self.assertTrue(any(message in r for r in compare_records(*synthetic_records(scenario), 5, 2)))
+                self.assertTrue(
+                    any(
+                        message in r
+                        for r in compare_records(*synthetic_records(scenario), 5, 2)
+                    )
+                )
 
     def test_missing_outcome_never_becomes_opponent_price(self):
         left, right = synthetic_records("missing")
@@ -31,7 +45,9 @@ class ComparabilityTests(unittest.TestCase):
     def test_duplicate_neither_selected_nor_mutated(self):
         left, right = synthetic_records("duplicate")
         original = copy.deepcopy(right)
-        self.assertIn("neither price is selected", compare_records(left, right, 5, 2)[0])
+        self.assertIn(
+            "neither price is selected", compare_records(left, right, 5, 2)[0]
+        )
         self.assertEqual(right, original)
         table = record_table(left, right)
         self.assertIn("-105", table)
@@ -91,19 +107,31 @@ class WorkloadTests(unittest.TestCase):
         self.assertEqual(workload(7, 1, 1, 1)["calls_daily"], 9)
 
     def test_invalid_parameters_fail_instead_of_silently_normalizing(self):
-        for args in ((0, 8, 30, 3), (1, 0, 30, 3), (1, 25, 30, 3),
-                     (1, 8, 32, 3), (1, 8, 30, -1), (True, 8, 30, 3),
-                     (1.5, 8, 30, 3), (1, 8, float("nan"), 3)):
+        for args in (
+            (0, 8, 30, 3),
+            (1, 0, 30, 3),
+            (1, 25, 30, 3),
+            (1, 8, 32, 3),
+            (1, 8, 30, -1),
+            (True, 8, 30, 3),
+            (1.5, 8, 30, 3),
+            (1, 8, float("nan"), 3),
+        ):
             with self.subTest(args=args), self.assertRaises(ValueError):
                 workload(*args)
 
     def test_notebook_runs_without_network_and_returns_real_default_results(self):
         self.assertFalse(app._unparsable)
-        with patch("socket.socket.connect", side_effect=AssertionError("Notebook tried network")):
+        with patch(
+            "socket.socket.connect",
+            side_effect=AssertionError("Notebook tried network"),
+        ):
             _, definitions = app.run()
         self.assertEqual(definitions["estimate"]["calls_monthly"], 960)
         self.assertEqual(definitions["ratio"], 45)
-        self.assertTrue(any("Point/line differs" in reason for reason in definitions["reasons"]))
+        self.assertTrue(
+            any("Point/line differs" in reason for reason in definitions["reasons"])
+        )
 
 
 if __name__ == "__main__":
