@@ -155,18 +155,22 @@ def _(index, mo, set_choices):
     model_A = mo.ui.button(
         label="Model A",
         on_change=lambda _: set_choices(
-            lambda v: v[: index.value]
-            + [{"index": index.value, "model": "A"}]
-            + v[index.value + 1 :]
+            lambda v: (
+                v[: index.value]
+                + [{"index": index.value, "model": "A"}]
+                + v[index.value + 1 :]
+            )
         ),
     )
 
     model_B = mo.ui.button(
         label="Model B",
         on_change=lambda _: set_choices(
-            lambda v: v[: index.value]
-            + [{"index": index.value, "model": "B"}]
-            + v[index.value + 1 :]
+            lambda v: (
+                v[: index.value]
+                + [{"index": index.value, "model": "B"}]
+                + v[index.value + 1 :]
+            )
         ),
     )
     mo.hstack([model_A, model_B], justify="space-around")
