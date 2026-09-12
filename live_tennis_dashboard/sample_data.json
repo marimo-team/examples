@@ -1,0 +1,253 @@
+{
+  "note": "Bundled SAMPLE data for the live-tennis marimo notebook. Player names are fictional. Shapes match the Live Tennis API OpenAPI spec (docs.livetennisapi.com/openapi.yaml): /matches?status=live and /fixtures responses.",
+  "matches": {
+    "data": [
+      {
+        "id": 910001,
+        "tournament": "Sample Open",
+        "tour": "atp",
+        "tournament_id": "sample-open-main",
+        "surface": "hard",
+        "indoor": false,
+        "format": "BO3",
+        "round": "Quarterfinal",
+        "round_code": "QF",
+        "status": "live",
+        "event_status": null,
+        "is_doubles": false,
+        "scheduled_time": "2026-08-16T11:00:00Z",
+        "players": {
+          "p1": { "id": 81001, "name": "Daniel Okafor", "tour": "atp", "country": "NG", "ranking": 14, "ranking_points": 2540, "hand": "R", "is_doubles_team": false },
+          "p2": { "id": 81002, "name": "Tomas Vanek", "tour": "atp", "country": "CZ", "ranking": 31, "ranking_points": 1385, "hand": "L", "is_doubles_team": false }
+        },
+        "score": {
+          "sets": [1, 0],
+          "games": [[6, 4], [3, 2]],
+          "points": ["30", "40"],
+          "server": 1,
+          "is_tiebreak": false,
+          "win_probability_p1": null,
+          "danger": null,
+          "timestamp": "2026-08-16T12:41:07Z"
+        },
+        "winner": null
+      },
+      {
+        "id": 910002,
+        "tournament": "Riverside Classic",
+        "tour": "wta",
+        "tournament_id": "riverside-classic-main",
+        "surface": "clay",
+        "indoor": false,
+        "format": "BO3",
+        "round": "Semifinal",
+        "round_code": "SF",
+        "status": "live",
+        "event_status": null,
+        "is_doubles": false,
+        "scheduled_time": "2026-08-16T10:30:00Z",
+        "players": {
+          "p1": { "id": 82001, "name": "Sofia Marchetti", "tour": "wta", "country": "IT", "ranking": 8, "ranking_points": 3910, "hand": "R", "is_doubles_team": false },
+          "p2": { "id": 82002, "name": "Hana Kobayashi", "tour": "wta", "country": "JP", "ranking": 22, "ranking_points": 1720, "hand": "R", "is_doubles_team": false }
+        },
+        "score": {
+          "sets": [0, 1],
+          "games": [[4, 6], [6, 6]],
+          "points": ["5", "3"],
+          "server": 2,
+          "is_tiebreak": true,
+          "win_probability_p1": null,
+          "danger": null,
+          "timestamp": "2026-08-16T12:40:32Z"
+        },
+        "winner": null
+      },
+      {
+        "id": 910003,
+        "tournament": "Harbor City Challenger",
+        "tour": "challenger",
+        "tournament_id": "harbor-city-ch",
+        "surface": "hard",
+        "indoor": true,
+        "format": "BO3",
+        "round": "Round of 16",
+        "round_code": "R16",
+        "status": "live",
+        "event_status": null,
+        "is_doubles": false,
+        "scheduled_time": "2026-08-16T12:00:00Z",
+        "players": {
+          "p1": { "id": 83001, "name": "Mateo Ibarra", "tour": "challenger_men", "country": "AR", "ranking": 134, "ranking_points": 470, "hand": "R", "is_doubles_team": false },
+          "p2": { "id": 83002, "name": "Felix Andersson", "tour": "challenger_men", "country": "SE", "ranking": 158, "ranking_points": 381, "hand": "R", "is_doubles_team": false }
+        },
+        "score": {
+          "sets": [0, 0],
+          "games": [[2], [3]],
+          "points": ["AD", "40"],
+          "server": 2,
+          "is_tiebreak": false,
+          "win_probability_p1": null,
+          "danger": null,
+          "timestamp": "2026-08-16T12:39:58Z"
+        },
+        "winner": null
+      },
+      {
+        "id": 910004,
+        "tournament": "Valley ITF W35",
+        "tour": "itf",
+        "tournament_id": "valley-itf-w35",
+        "surface": "clay",
+        "indoor": false,
+        "format": "BO3",
+        "round": "Final",
+        "round_code": "F",
+        "status": "live",
+        "event_status": null,
+        "is_doubles": false,
+        "scheduled_time": "2026-08-16T09:00:00Z",
+        "players": {
+          "p1": { "id": 84001, "name": "Leila Haddad", "tour": "itf_women", "country": "TN", "ranking": 412, "ranking_points": 96, "hand": "R", "is_doubles_team": false },
+          "p2": { "id": 84002, "name": "Petra Novakova", "tour": "itf_women", "country": "SK", "ranking": 388, "ranking_points": 104, "hand": "L", "is_doubles_team": false }
+        },
+        "score": {
+          "sets": [1, 1],
+          "games": [[6, 2, 4], [3, 6, 4]],
+          "points": ["15", "15"],
+          "server": 1,
+          "is_tiebreak": false,
+          "win_probability_p1": null,
+          "danger": null,
+          "timestamp": "2026-08-16T12:41:20Z"
+        },
+        "winner": null
+      },
+      {
+        "id": 910005,
+        "tournament": "Sample Open",
+        "tour": "atp",
+        "tournament_id": "sample-open-main",
+        "surface": "hard",
+        "indoor": false,
+        "format": "BO3",
+        "round": "Quarterfinal",
+        "round_code": "QF",
+        "status": "live",
+        "event_status": null,
+        "is_doubles": false,
+        "scheduled_time": "2026-08-16T12:15:00Z",
+        "players": {
+          "p1": { "id": 81003, "name": "Ruben Castillo", "tour": "atp", "country": "ES", "ranking": 5, "ranking_points": 5230, "hand": "R", "is_doubles_team": false },
+          "p2": { "id": 81004, "name": "Jonas Weber", "tour": "atp", "country": "DE", "ranking": 47, "ranking_points": 1010, "hand": "R", "is_doubles_team": false }
+        },
+        "score": {
+          "sets": [0, 0],
+          "games": [[5], [4]],
+          "points": ["40", "0"],
+          "server": 1,
+          "is_tiebreak": false,
+          "win_probability_p1": null,
+          "danger": null,
+          "timestamp": "2026-08-16T12:41:11Z"
+        },
+        "winner": null
+      }
+    ],
+    "meta": { "limit": 50, "offset": 0, "count": 5, "total": 5, "has_more": false }
+  },
+  "fixtures": {
+    "data": [
+      {
+        "id": 920001,
+        "event_date": "2026-08-16",
+        "start_time": "2026-08-16T15:00:00Z",
+        "player1_id": 81005,
+        "player2_id": 81006,
+        "tour": "atp",
+        "tournament": "Sample Open",
+        "round": "Quarterfinal",
+        "round_code": "QF",
+        "surface": "hard",
+        "player1_name": "Andrei Popescu",
+        "player2_name": "Louis Moreau",
+        "status": "scheduled"
+      },
+      {
+        "id": 920002,
+        "event_date": "2026-08-16",
+        "start_time": "2026-08-16T17:30:00Z",
+        "player1_id": 82003,
+        "player2_id": 82004,
+        "tour": "wta",
+        "tournament": "Riverside Classic",
+        "round": "Semifinal",
+        "round_code": "SF",
+        "surface": "clay",
+        "player1_name": "Emma Lindqvist",
+        "player2_name": "Carla Duarte",
+        "status": "scheduled"
+      },
+      {
+        "id": 920003,
+        "event_date": "2026-08-17",
+        "start_time": null,
+        "player1_id": 83003,
+        "player2_id": null,
+        "tour": "challenger_men",
+        "tournament": "Harbor City Challenger",
+        "round": "Round of 16",
+        "round_code": "R16",
+        "surface": "hard",
+        "player1_name": "Igor Melnyk",
+        "player2_name": "Sam Whitfield",
+        "status": "scheduled"
+      },
+      {
+        "id": 920004,
+        "event_date": "2026-08-17",
+        "start_time": "2026-08-17T08:00:00Z",
+        "player1_id": null,
+        "player2_id": null,
+        "tour": "itf_men",
+        "tournament": "Lakeside ITF M25",
+        "round": "Semifinal",
+        "round_code": "SF",
+        "surface": "clay",
+        "player1_name": "Niko Virtanen",
+        "player2_name": "Bruno Silva",
+        "status": "scheduled"
+      },
+      {
+        "id": 920005,
+        "event_date": "2026-08-17",
+        "start_time": "2026-08-17T11:00:00Z",
+        "player1_id": null,
+        "player2_id": null,
+        "tour": "juniors_girls",
+        "tournament": "Junior Slam Sample",
+        "round": "Round of 32",
+        "round_code": "R32",
+        "surface": "grass",
+        "player1_name": "Maya Chen",
+        "player2_name": "Alice Fontaine",
+        "status": "scheduled"
+      },
+      {
+        "id": 920006,
+        "event_date": "2026-08-18",
+        "start_time": "2026-08-18T13:00:00Z",
+        "player1_id": 81001,
+        "player2_id": 81003,
+        "tour": "atp",
+        "tournament": "Sample Open",
+        "round": "Semifinal",
+        "round_code": "SF",
+        "surface": "hard",
+        "player1_name": "Daniel Okafor",
+        "player2_name": "Ruben Castillo",
+        "status": "scheduled"
+      }
+    ],
+    "meta": { "limit": 25, "offset": 0, "count": 6, "total": 6, "has_more": false }
+  }
+}
