@@ -19,12 +19,12 @@ repos:
         args: [-c, configs/.markdownlint.yaml, --fix, --disable, MD028]
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1
+    rev: typos-dict-v0.14.2
     hooks:
       - id: typos
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.5
+    rev: v0.16.10
     hooks:
       # Run the formatter
       - id: ruff-format
